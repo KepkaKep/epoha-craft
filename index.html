@@ -1,96 +1,102 @@
-<!DOCTYPE html>
-
-<html>
-
-	<head>
-
-		<title>EPOHA-CRAFT</title>
-
-		<style>
-
-  		 	.frame {
-
-    			border: 3px solid #00a8e1;
-
-  			 }
-
- 		</style>
-
-		  <style>
-
-			   .center {
-
- 			   text-align: center; /* Выравнивание по центру */ 
-
-			   }
-
-			  </style>
-
-		  <style>
-
-		   .round {
-
-    			border-radius: 100px; /* Радиус скругления */
-
-    			border: 3px solid blue; /* Параметры рамки */
-
-    			box-shadow: 0 0 7px #666; /* Параметры тени */
-
-   			}
-
-  		</style>
-
-	</head>
-
-<style>
-
-  body {
-
-    background-image: url('fon.jpg');
-
-    background-repeat: no-repeat;
-
-    background-size: cover;
-
-  }
-
-</style>
-
-	<body bgimg="fon.jpg">
-
-<p class="center"><a href="index.html"> <img src="media/banner.png" height="50" align="center"></a></p>
-
-		<iframe src="https://minecraftrating.ru/server_chart/238043/" width="100%" height="300" frameborder="0"></iframe>
-
-		<h1 style="border:2px solid DodgerBlue;" align="center">ПРИВЕТСТВИЕ</h1>
-
-		<h3 align="center">Приветсвую всех вас дорогие посетители моего сайта! Я приглащаю вас в свой мир, где вы сможете познакомиться со мной!</h3>
-
-		<br>
-
-		<h2 color="red" size="100" align="center">Я И МОЯ СЕМЬЯ</h2>
-
-		<p class="center"><a href="family.html"> <img src="media/Familyp.png" height="500" weight="1000" class="round"></a></p>
-
-		<br>
-
-		<h2 color="red" size="100" align="center">МОЙ КЛАСС</h2>
-
-		<p class="center"><a href="class.html"> <img src="media/class.jpg" height="500" weight="1000" class="round"></a></p>
-
-		<br>
-
-		<h2 color="red" size="100" align="center">НАГРАДЫ И ДОСТИЖЕНИЯ</h2>
-
-		<p class="center"><a href="price.html"> <img src="media/price.jpg" height="600" class="round"></a></p>
-
-		<br>
-
-		<h2 color="red" size="100" align="center">ХОББИ</h2>
-
-		<p class="center"><a href="hobby.html"> <img src="media/hob.jpg" height="400 "height="800" class="round"></a></p>
-
-	</body>
-
+<!DOCTYPE html><html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>EPOHA-CRAFT | Автодонат</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1e1e2e;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2e2e40;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    .info {
+      margin: 20px 0;
+      font-size: 1.2em;
+    }
+    .donate {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .item {
+      background: #2e2e40;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    .item h3 {
+      margin: 10px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      margin-top: 10px;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #45a049;
+    }
+    footer {
+      margin-top: 30px;
+      padding: 15px;
+      background: #2e2e40;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EPOHA-CRAFT</h1>
+    <p class="info">IP: <b>epoha-craft.ddns.net</b> | Port: <b>19132</b></p>
+    <p id="online">Онлайн сервера: загружается...</p>
+  </header>  <section class="donate">
+    <div class="item">
+      <h3>VIP</h3>
+      <p>Цена: 100₽</p>
+      <a href="#" class="btn">Купить</a>
+    </div>
+    <div class="item">
+      <h3>Premium</h3>
+      <p>Цена: 250₽</p>
+      <a href="#" class="btn">Купить</a>
+    </div>
+    <div class="item">
+      <h3>Admin</h3>
+      <p>Цена: 500₽</p>
+      <a href="#" class="btn">Купить</a>
+    </div>
+  </section>  <footer>
+    <p>© 2025 EPOHA-CRAFT | Автодонат магазин</p>
+  </footer>  <script>
+    async function getOnline() {
+      try {
+        let response = await fetch("https://api.mcsrvstat.us/bedrock/2/epoha-craft.ddns.net:19132");
+        let data = await response.json();
+        if (data && data.players) {
+          document.getElementById("online").innerText = `Онлайн сервера: ${data.players.online}/${data.players.max}`;
+        } else {
+          document.getElementById("online").innerText = "Онлайн сервера: оффлайн";
+        }
+      } catch (e) {
+        document.getElementById("online").innerText = "Не удалось получить онлайн";
+      }
+    }
+    getOnline();
+  </script></body>
 </html>
-
