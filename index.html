@@ -10,8 +10,6 @@
       font-family: Arial, sans-serif;
       background: #1e1e2e;
       color: #fff;
-    }
-    body {
       display: flex;
       flex-direction: column;
     }
@@ -28,13 +26,137 @@
       margin: 20px 0;
       font-size: 1.2em;
     }
-    .donate {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      padding: 20px;
+    .donate-container {
       flex: 1;
+      overflow-y: auto;
+      padding: 20px;
     }
+    .donate {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .item {
+      background: #2e2e40;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      text-align: center;
+      word-wrap: break-word;
+    }
+    .item h3 {
+      margin: 10px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      margin-top: 10px;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #45a049;
+    }
+    footer {
+      background: #2e2e40;
+      padding: 15px;
+      text-align: center;
+    }
+    /* Цвета рангов */
+    .vip { color: #55ffff; font-weight: bold; }
+    .premium { color: #55ff55; font-weight: bold; }
+    .titan { color: #ffaa00; font-weight: bold; }
+    .lord { color: #ffaa00; font-weight: bold; }
+    .master { color: #aa00ff; font-weight: bold; }
+    .owner { color: #ff5555; font-weight: bold; }
+    .ruler { color: #0000aa; font-weight: bold; }
+    .emperor { color: #ffff55; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EPOHA-CRAFT</h1>
+    <p class="info">IP: <b>epoha-craft.ddns.net</b> | Port: <b>19132</b></p>
+    <p id="online">Онлайн сервера: загружается...</p>
+  </header>  <div class="donate-container">
+    <div class="donate">
+      <div class="item">
+        <h3 class="vip">Вип</h3>
+        <p>Цена: 10₽</p>
+        <button class="btn" onclick="buy('10')">Купить</button>
+      </div>
+      <div class="item">
+        <h3 class="premium">Премиум</h3>
+        <p>Цена: 20₽</p>
+        <button class="btn" onclick="buy('20')">Купить</button>
+      </div>
+      <div class="item">
+        <h3 class="titan">Титан</h3>
+        <p>Цена: 45₽</p>
+        <button class="btn" onclick="buy('45')">Купить</button>
+      </div>
+      <div class="item">
+        <h3 class="lord">Лорд</h3>
+        <p>Цена: 75₽</p>
+        <button class="btn" onclick="buy('75')">Купить</button>
+      </div>
+      <div class="item">
+        <h3 class="owner">Хозяин</h3>
+        <p>Цена: 100₽</p>
+        <button class="btn" onclick="buy('100')">Купить</button>
+      </div>
+      <div class="item">
+        <h3 class="master">Мастер</h3>
+        <p>Цена: 125₽</p>
+        <button class="btn" onclick="buy('125')">Купить</button>
+      </div>
+      <div class="item">
+        <h3 class="ruler">Владыка</h3>
+        <p>Цена: 200₽</p>
+        <button class="btn" onclick="buy('200')">Купить</button>
+      </div>
+      <div class="item">
+        <h3 class="emperor">ИМПЕРАТОР</h3>
+        <p><b>НЕ ПРОДАЕТСЯ</b></p>
+      </div>
+    </div>
+  </div>  <footer>
+    <p>© 2025 EPOHA-CRAFT | Автодонат магазин</p>
+  </footer>  <script>
+    async function getOnline() {
+      try {
+        let response = await fetch("https://api.mcsrvstat.us/bedrock/2/epoha-craft.ddns.net:19132");
+        let data = await response.json();
+        if (data && data.players) {
+          document.getElementById("online").innerText = `Онлайн сервера: ${data.players.online}/${data.players.max}`;
+        } else {
+          document.getElementById("online").innerText = "Онлайн сервера: оффлайн";
+        }
+      } catch (e) {
+        document.getElementById("online").innerText = "Не удалось получить онлайн";
+      }
+    }
+    getOnline();
+
+    function buy(amount) {
+      let username = prompt('Введите ваш никнейм в Minecraft:');
+      if(username && username.trim() !== '') {
+        let url = `https://www.donationalerts.com/r/kepka_kep?amount=${amount}&username=${encodeURIComponent(username)}`;
+        window.open(url, '_blank');
+      } else {
+        alert('Никнейм не может быть пустым!');
+      }
+    }
+  </script></body>
+</html>    }
     .item {
       background: #2e2e40;
       padding: 15px;
