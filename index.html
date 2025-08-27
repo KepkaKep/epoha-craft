@@ -3,17 +3,22 @@
   <meta charset="UTF-8">
   <title>EPOHA-CRAFT | Автодонат</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
       background: #1e1e2e;
       color: #fff;
-      text-align: center;
-      margin: 0;
-      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
     }
     header {
       background: #2e2e40;
       padding: 20px;
+      text-align: center;
     }
     h1 {
       margin: 0;
@@ -28,12 +33,19 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px;
       padding: 20px;
+      flex: 1;
     }
     .item {
       background: #2e2e40;
       padding: 15px;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      word-wrap: break-word;
+      overflow: hidden;
+      text-align: center;
     }
     .item h3 {
       margin: 10px 0;
@@ -54,9 +66,10 @@
       background: #45a049;
     }
     footer {
-      margin-top: 30px;
-      padding: 15px;
       background: #2e2e40;
+      padding: 15px;
+      text-align: center;
+      margin-top: auto;
     }
     /* Цвета рангов */
     .vip { color: #55ffff; font-weight: bold; }
@@ -67,6 +80,11 @@
     .owner { color: #ff5555; font-weight: bold; }
     .ruler { color: #0000aa; font-weight: bold; }
     .emperor { color: #ffff55; font-weight: bold; }
+    .emperor-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   </style>
 </head>
 <body>
@@ -105,6 +123,34 @@
       <p>Цена: 125₽</p>
       <a href="https://www.donationalerts.com/r/kepka_kep" target="_blank" class="btn">Купить</a>
     </div>
+    <div class="item">
+      <h3 class="ruler">Владыка</h3>
+      <p>Цена: 200₽</p>
+      <a href="https://www.donationalerts.com/r/kepka_kep" target="_blank" class="btn">Купить</a>
+    </div>
+    <div class="item">
+      <h3 class="emperor emperor-text">ИМПЕРАТОР</h3>
+      <p class="emperor-text"><b>НЕ ПРОДАЕТСЯ</b></p>
+    </div>
+  </section>  <footer>
+    <p>© 2025 EPOHA-CRAFT | Автодонат магазин</p>
+  </footer>  <script>
+    async function getOnline() {
+      try {
+        let response = await fetch("https://api.mcsrvstat.us/bedrock/2/epoha-craft.ddns.net:19132");
+        let data = await response.json();
+        if (data && data.players) {
+          document.getElementById("online").innerText = `Онлайн сервера: ${data.players.online}/${data.players.max}`;
+        } else {
+          document.getElementById("online").innerText = "Онлайн сервера: оффлайн";
+        }
+      } catch (e) {
+        document.getElementById("online").innerText = "Не удалось получить онлайн";
+      }
+    }
+    getOnline();
+  </script></body>
+</html>    </div>
     <div class="item">
       <h3 class="ruler">Владыка</h3>
       <p>Цена: 200₽</p>
